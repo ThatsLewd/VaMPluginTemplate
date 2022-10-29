@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using SimpleJSON;
-using MacGruber;
+using VaMUtils;
 
 namespace ThatsLewd
 {
@@ -25,12 +22,12 @@ namespace ThatsLewd
 
     void OnDestroy()
     {
-      Utils.OnDestroyUI();
+      UIBuilder.Destroy();
     }
 
     void CreateUI()
     {
-      Utils.OnInitUI(CreateUIElement);
+      UIBuilder.Init(this, CreateUIElement);
     }
 
     public void Update()
@@ -45,9 +42,9 @@ namespace ThatsLewd
       return json;
     }
 
-    public override void RestoreFromJSON(JSONClass json, bool restorePhysical = true, bool restoreAppearance = true, JSONArray presetAtoms = null, bool setMissingToDefault = true)
+    public override void LateRestoreFromJSON(JSONClass json, bool restorePhysical = true, bool restoreAppearance = true, bool setMissingToDefault = true)
     {
-      base.RestoreFromJSON(json, restorePhysical, restoreAppearance, presetAtoms, setMissingToDefault);
+      base.LateRestoreFromJSON(json, restorePhysical, restoreAppearance, setMissingToDefault);
     }
   }
 }
